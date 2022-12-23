@@ -69,6 +69,13 @@ export async function signIn(user) {
   start();
 }
 
+export function signOut() {
+  const cookies = new Cookies();
+  cookies.remove("refresh");
+  cookies.remove("access");
+  start();
+}
+
 export async function getUserTasks() {
   const response = await axiosAuthenticated.get("task/all/").catch((error) => {
     if (error.code === LOGGINGFAILED) {

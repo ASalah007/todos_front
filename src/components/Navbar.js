@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App.js";
+import { signOut } from "../services/user_services.js";
 import Button from "./Button.js";
 
 const leftButtons = [
@@ -12,6 +13,7 @@ const leftButtons = [
 function Navbar() {
   const user = useContext(UserContext);
   const [avatarMenuState, setAvatarMenuState] = useState(false);
+  const navigate = useNavigate();
   const toggleAvatarMenu = () => {
     setAvatarMenuState((oldState) => {
       if (!oldState)
@@ -26,7 +28,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="text-center h-20 flex shadow-md items-center justify-between fixed w-screen z-10 bg-white">
+    <nav className="text-center h-full flex shadow-md items-center justify-between z-10">
       {/* left  */}
       <div className="flex items-center sm:gap-5 justify-start">
         <div className="flex justify-center items-center text-gray-500 p-2 ml-3 sm:hidden">
@@ -101,12 +103,19 @@ function Navbar() {
                     </Link>
 
                     {[
-                      ["settings", "settings", "/settings/"],
-                      ["sign out", "logout", "/signout/"],
+                      ["settings", "settings", () => navigate("/")],
+                      [
+                        "sign out",
+                        "logout",
+                        () => {
+                          signOut();
+                          navigate("/");
+                        },
+                      ],
                     ].map((txt, i) => {
                       return (
-                        <Link
-                          to={txt[2]}
+                        <button
+                          onClick={txt[2]}
                           className="flex items-center gap-2 p-3 border-t border-gray-200 hover:cursor-pointer hover:bg-gray-200"
                           key={i}
                         >
@@ -114,7 +123,7 @@ function Navbar() {
                             {txt[1]}
                           </span>
                           <div>{txt[0]}</div>
-                        </Link>
+                        </button>
                       );
                     })}
                   </div>
