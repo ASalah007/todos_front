@@ -1,6 +1,7 @@
 import axios from "axios";
 import Cookies from "universal-cookie";
 import jwt_decoded from "jwt-decode";
+import { start } from "../index.js";
 
 const baseURL = "http://127.0.0.1:8000";
 const homeURL = "http://127.0.0.1:3000";
@@ -53,7 +54,7 @@ axiosAuthenticated.interceptors.request.use(async function (config) {
   };
 });
 
-export async function singIn(user) {
+export async function signIn(user) {
   const response = await axios.post("token/", user);
   console.log(jwt_decoded(response.data.refresh).exp);
   const cookies = new Cookies();
@@ -65,6 +66,7 @@ export async function singIn(user) {
     expires: new Date(jwt_decoded(response.data.access).exp * 1000),
     path: "/",
   });
+  start();
 }
 
 export async function getUserTasks() {

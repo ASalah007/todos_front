@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import Button from "../components/Button";
-import { signIn, singIn } from "../services/user_services.js";
+import { signIn } from "../services/user_services.js";
+import { UserContext } from "../App";
 
 function SignInPage(props) {
   const [
@@ -10,13 +11,17 @@ function SignInPage(props) {
     password,
     rememberMe,
     errors,
+    user,
     formSubmitHandler,
     onEmailChangeHandler,
     onPasswordChangeHandler,
     onCheckboxChangeHandler,
   ] = useAllStates(props);
 
-  return (
+  console.log(user);
+  return user.isLoggedIn ? (
+    <Navigate to="/home" />
+  ) : (
     <div className="bg-gray-200 min-w-screen grow flex flex-col justify-center items-center lg:py-11 lg:px-10">
       {/* board */}
       <div className="bg-white grow w-full max-w-6xl max-h-[1000px] lg:rounded-lg flex flex-col-reverse lg:flex-row overflow-hidden shadow-2xl">
@@ -90,7 +95,7 @@ function SignInPage(props) {
                 </div>
 
                 <div className="w-60 md:w-80 flex flex-col gap-3 self-center">
-                  <Button loading={loading}>Sign In</Button>
+                  <Button loading={loading}>Log In</Button>
 
                   <Button
                     className="text-black hover:bg-gray-100 border-gray-300 flex justify-center items-center gap-1"
@@ -134,6 +139,7 @@ function useAllStates(props) {
   const [rememberMe, setRememberMe] = useState("");
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
   const onPasswordChangeHandler = (e) => {
     setPassword(e.target.value);
@@ -165,7 +171,7 @@ function useAllStates(props) {
       password: password,
       rememberMe: rememberMe,
     };
-    singIn(user)
+    signIn(user)
       .then((res) => {
         setLoading(false);
         navigate("/home");
@@ -183,6 +189,7 @@ function useAllStates(props) {
     password,
     rememberMe,
     errors,
+    user,
     formSubmitHandler,
     onEmailChangeHandler,
     onPasswordChangeHandler,

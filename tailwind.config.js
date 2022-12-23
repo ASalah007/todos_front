@@ -16,6 +16,21 @@ module.exports = {
         success: "#06d6a0",
         failure: "#e71d36",
       },
+      screens: {
+        xs: "420px",
+        xxs: "240px",
+      },
+      gridTemplateRows: {
+        12: "repeat(12, minmax(0, 1fr))",
+      },
+      gridRowEnd: {
+        8: "8",
+        9: "9",
+        10: "10",
+        11: "11",
+        12: "12",
+        13: "13",
+      },
     },
   },
   plugins: [],
