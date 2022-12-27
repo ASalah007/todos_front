@@ -6,11 +6,11 @@ import Button from "./Button.js";
 
 const leftButtons = [
   ["Home", "/"],
+  ["Dashboard", "/dashboard"],
   ["About Us", "/"],
-  ["Pricing", "/"],
 ];
 
-function Navbar() {
+function Navbar({ sidebar, setSidebar, inAllowedPages }) {
   const user = useContext(UserContext);
   const [avatarMenuState, setAvatarMenuState] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function Navbar() {
   };
 
   const closeAvatarMenu = () => {
-    setAvatarMenuState((oldState) => false);
+    setAvatarMenuState(false);
     window.removeEventListener("click", closeAvatarMenu);
   };
 
@@ -31,9 +31,16 @@ function Navbar() {
     <nav className="text-center h-full flex shadow-md items-center justify-between z-10">
       {/* left  */}
       <div className="flex items-center sm:gap-5 justify-start">
-        <div className="flex justify-center items-center text-gray-500 p-2 ml-3 sm:hidden">
-          <span className="material-symbols-rounded">menu</span>
-        </div>
+        {inAllowedPages && (
+          <div
+            onClick={() => setSidebar((old) => !old)}
+            className="flex justify-center items-center text-gray-500 p-2 ml-3 sm:hidden"
+          >
+            <span className="material-symbols-rounded">
+              {sidebar ? "close" : "menu"}
+            </span>
+          </div>
+        )}
         {/* logo */}
         <Link to="/" className="flex items-center shrink-0">
           <img src="/images/logo.png" alt="logo" className="w-16 shrink-0 " />
@@ -58,7 +65,7 @@ function Navbar() {
 
       {/* right */}
       <div className="flex justify-end justify-self-end">
-        {user && user.isLoggedIn ? (
+        {user.isLoggedIn ? (
           <div className="flex items-center md:gap-7 gap-3">
             {/* search */}
             <div className="flex gap-3 items-center p-1 sm:p-2 sm:px-4 rounded hover:bg-gray-100 hover:cursor-pointer active:bg-gray-50 select-none">
@@ -88,7 +95,7 @@ function Navbar() {
                       "absolute bg-gray-50 -translate-x-[86%] translate-y-2 flex flex-col shadow-lg w-60 shadow-stone-400"
                     }
                   >
-                    <Link to="/">
+                    <Link to="/dashboard">
                       <div className="p-4 flex items-center hover:cursor-pointer hover:bg-gray-200">
                         <div className="rounded-full bg-primary text-white text-md font-bold w-9 h-9 flex justify-center items-center mr-4">
                           {user.name[0]}

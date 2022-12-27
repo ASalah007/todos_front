@@ -18,9 +18,8 @@ function SignInPage(props) {
     onCheckboxChangeHandler,
   ] = useAllStates(props);
 
-  console.log(user);
   return user.isLoggedIn ? (
-    <Navigate to="/home" />
+    <Navigate to="/dashboard" />
   ) : (
     <div className="bg-gray-200 min-w-screen grow flex flex-col justify-center items-center lg:py-11 lg:px-10">
       {/* board */}
@@ -98,7 +97,7 @@ function SignInPage(props) {
                   <Button loading={loading}>Log In</Button>
 
                   <Button
-                    className="text-black hover:bg-gray-100 border-gray-300 flex justify-center items-center gap-1"
+                    className="text-black hover:bg-gray-100 border  border-gray-400 flex justify-center items-center gap-1"
                     outlined={1}
                   >
                     <div className="w-6">
@@ -174,11 +173,10 @@ function useAllStates(props) {
     signIn(user)
       .then((res) => {
         setLoading(false);
-        navigate("/home");
+        navigate("/dashboard");
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
         setErrors("Wrong Credentials!");
       });
   };

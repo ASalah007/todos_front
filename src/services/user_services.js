@@ -56,7 +56,6 @@ axiosAuthenticated.interceptors.request.use(async function (config) {
 
 export async function signIn(user) {
   const response = await axios.post("token/", user);
-  console.log(jwt_decoded(response.data.refresh).exp);
   const cookies = new Cookies();
   cookies.set("refresh", response.data.refresh, {
     expires: new Date(jwt_decoded(response.data.refresh).exp * 1000),
@@ -90,5 +89,5 @@ export async function getUserData() {
     .get("user/detail/")
     .catch((error) => {});
 
-  return response.data;
+  return response?.data;
 }

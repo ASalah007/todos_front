@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -7,34 +7,45 @@ import Aside from "../components/Aside";
 function BasePage() {
   const location = useLocation();
   const inAllowedPages = !["/signin/", "/"].includes(location.pathname);
+  const [sidebar, setSidebar] = useState(false);
+  const [expand, setExpand] = useState(true);
 
   return (
-    <div className="h-screen grid grid-cols-12 grid-rows-12 gap-0">
-      <div className="col-span-12 row-span-1">
-        <Navbar />
+    <div className="h-screen">
+      <div className="w-screen fixed top-0 left-0 bg-white h-20 z-10">
+        <Navbar
+          sidebar={sidebar}
+          setSidebar={setSidebar}
+          inAllowedPages={inAllowedPages}
+        />
       </div>
+
       {inAllowedPages && (
-        <div className="hidden sm:block sm:col-span-2 xl:col-span-1 row-start-2 row-end-13">
-          <Aside />
+        <div
+          className={
+            "sm:block fixed h-screen pt-20 " +
+            (sidebar ? " block " : " hidden ") +
+            (expand ? "w-24" : "w-16")
+          }
+        >
+          <Aside expand={expand} />
         </div>
       )}
 
       <div
         className={
-          "col-span-full sm:col-span-10 xl:col-span-11 row-start-2 row-end-13 bg-yellow-300 overflow-y-auto " +
-          (!inAllowedPages && "sm:col-span-full")
+          "flex flex-col justify-between h-full min-h-screen w-screen pt-20 overflow-x-hidden " +
+          (inAllowedPages ? (expand ? "sm:pl-24" : "sm:pl-16") : "pl-0")
         }
       >
-        <div className="flex flex-col grow justify-between h-full">
-          {/* content */}
-          <div className="grow flex flex-col">
-            <Outlet />
-          </div>
+        {/* content */}
+        <div className="grow flex flex-col">
+          <Outlet />
+        </div>
 
-          {/* footer */}
-          <div>
-            <Footer />
-          </div>
+        {/* footer */}
+        <div>
+          <Footer />
         </div>
       </div>
     </div>

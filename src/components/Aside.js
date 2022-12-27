@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navs = [
-  ["Dashboard", "calendar_today", "/"],
-  ["Something", "calendar_today", "/a"],
-  ["Something", "calendar_today", "/b"],
-  ["Calendar", "calendar_view_month", "/b"],
+  ["Dashboard", "space_dashboard", "/dashboard"],
+  ["Lists", "receipt_long", "/b"],
+  ["My Groups", "groups", "/a"],
+  ["Insights", "insights", "/b"],
+  ["Store", "storefront", "/b"],
+  ["Calendar", "calendar_month", "/b"],
 ];
 
-function Aside() {
-  const activeStyle = " bg-primary-800 text-gray-200 hover:bg-primary-1000";
+function Aside({ expand }) {
+  const activeStyle = " bg-primary text-gray-100 hover:bg-primary-800";
   const [activeIdx, setActiveIdx] = useState(0);
   const location = useLocation();
   useEffect(() => {
@@ -23,7 +25,7 @@ function Aside() {
   }, [activeIdx, setActiveIdx, location.pathname]);
 
   return (
-    <div className="overflow-hidden bg-gray-100 h-full flex flex-col border-t border-gray-300">
+    <div className="bg-gray-100 h-full flex flex-col border-t border-gray-300 overflow-auto">
       {navs.map((nav, i) => {
         return (
           <React.Fragment key={i}>
@@ -31,14 +33,19 @@ function Aside() {
             <Link
               to={nav[2]}
               className={
-                "flex flex-col items-center py-4 hover:cursor-pointer hover:bg-gray-200 px-1 " +
-                (activeIdx === i ? activeStyle : "")
+                "flex flex-col gap-1 items-center py-4 hover:cursor-pointer px-1 relative " +
+                (activeIdx === i ? activeStyle : "hover:bg-gray-200")
               }
             >
-              <span className="material-symbols-rounded text-[45px]">
+              <span className="material-symbols-rounded text-[40px]">
                 {nav[1]}
               </span>
-              <div className="text-md font-semibold tracking-wide">
+              <div
+                className={
+                  "text-sm tracking-wide text-center w-20 " +
+                  (expand ? "block" : "hidden")
+                }
+              >
                 {nav[0]}
               </div>
             </Link>
