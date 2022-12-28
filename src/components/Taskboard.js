@@ -77,7 +77,7 @@ function Taskboard() {
       </div>
       {/* period navigation end */}
 
-      <div className="p-1 xs:p-3 flex flex-col items-center gap-3">
+      <div className="p-1 xs:p-3 flex flex-col items-center gap-3 mb-20">
         {!tasks
           ? "loading"
           : tasks.map((list) => {

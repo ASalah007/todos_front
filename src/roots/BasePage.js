@@ -8,10 +8,10 @@ function BasePage() {
   const location = useLocation();
   const inAllowedPages = !["/signin/", "/"].includes(location.pathname);
   const [sidebar, setSidebar] = useState(false);
-  const [expand, setExpand] = useState(true);
+  const [expand, setExpand] = useState(false);
 
   return (
-    <div className="h-screen">
+    <div className="h-screen overflow-hidden">
       <div className="w-screen fixed top-0 left-0 bg-white h-20 z-10">
         <Navbar
           sidebar={sidebar}
@@ -31,10 +31,10 @@ function BasePage() {
           <Aside expand={expand} />
         </div>
       )}
-
+      <div className="h-20 w-screen"></div>
       <div
         className={
-          "flex flex-col justify-between h-full min-h-screen w-screen pt-20 overflow-x-hidden " +
+          "flex flex-col justify-between h-full w-screen overflow-x-hidden " +
           (inAllowedPages ? (expand ? "sm:pl-24" : "sm:pl-16") : "pl-0")
         }
       >

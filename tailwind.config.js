@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         "sign-in": "url('../public/images/64.svg')",
+        dessert:
+          "url(https://images.unsplash.com/photo-1457264635001-828d0cbd483e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80)",
       },
       colors: {
         primary: "#980DFF",
