@@ -19,7 +19,7 @@ function Taskboard() {
   return (
     <div className="flex flex-col h-full gap-5 select-none whitespace-nowrap">
       {/* periods navigation */}
-      <div className="bg-white h-16 flex justify-between rounded-xl shadow-md">
+      <div className="bg-white dark:bg-white/30 dark:backdrop-blur-2xl h-16 flex justify-between rounded-xl shadow-md">
         {/* down period */}
         <div className="flex justify-start gap-2 items-center w-16 sm:w-36 px-3 text-sm ">
           {activePeriod > 0 && (

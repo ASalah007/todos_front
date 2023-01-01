@@ -12,7 +12,7 @@ function BasePage() {
 
   return (
     <div className="h-screen overflow-hidden">
-      <div className="w-screen fixed top-0 left-0 bg-white h-20 z-10">
+      <div className="w-screen fixed top-0 left-0 bg-white dark:bg-gray-800 dark:text-white h-20 z-10">
         <Navbar
           sidebar={sidebar}
           setSidebar={setSidebar}

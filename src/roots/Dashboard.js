@@ -10,14 +10,14 @@ function Dashboard(props) {
   return !user.isLoggedIn ? (
     <Navigate to="/signin/" />
   ) : (
-    <div className="bg-blue-100 bg-fixed bg-no-repeat bg-cover flex h-full">
+    <div className="bg-blue-100 dark:bg-dessert bg-fixed bg-no-repeat bg-cover flex h-full">
       <div className="py-4 px-1 md:px-10 xl:px-16 grow">
         <Taskboard />
       </div>
 
-      <div className="w-64 bg-green-200 text-center hidden lg:block">
+      {/* <div className="w-64 bg-green-200 text-center hidden lg:block">
         calendar timeline
-      </div>
+      </div> */}
     </div>
   );
 }

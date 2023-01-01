@@ -9,7 +9,7 @@ function Task({ task }) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md">
+    <div className="bg-white dark:bg-white/30 dark:backdrop-blur-2xl rounded-xl shadow-md">
       <div className="flex gap-2 p-3 ">
         {/* task header */}
         <div className={"grow flex flex-col font-sans "}>
@@ -24,9 +24,11 @@ function Task({ task }) {
                   (done && " bg-green-400")
                 }
               >
-                <span className="material-symbols-rounded text-[28px] text-white">
-                  done
-                </span>
+                {done && (
+                  <span className="material-symbols-rounded text-[28px] text-white">
+                    done
+                  </span>
+                )}
               </div>
             </div>
             {/* task checkbox end */}
@@ -34,7 +36,7 @@ function Task({ task }) {
             {/* title */}
             <div
               className={
-                "xxs:max-w-[150px] xs:max-w-[180px] md:max-w-none truncate text-ellipsis text-lg " +
+                "xxs:max-w-[150px] xs:max-w-[180px] md:max-w-none truncate text-ellipsis text-lg dark:text-white/80 " +
                 (done && " line-through")
               }
             >
@@ -59,7 +61,7 @@ function Task({ task }) {
             {/* deadline end */}
 
             {/* notes */}
-            <div className="text-gray-500 text-sm max-w-[200px] hidden xs:block sm:max-w-[350px] text-ellipsis truncate ">
+            <div className="text-gray-500 dark:text-white/70 text-sm max-w-[200px] hidden xs:block sm:max-w-[350px] text-ellipsis truncate ">
               {task.notes + " this is some long ass notes that the user "}
             </div>
             {/* notes end */}

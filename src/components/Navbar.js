@@ -44,7 +44,7 @@ function Navbar({ sidebar, setSidebar, inAllowedPages }) {
         {/* logo */}
         <Link to="/" className="flex items-center shrink-0">
           <img src="/images/logo.png" alt="logo" className="w-16 shrink-0 " />
-          <span className="font-bold font-sans text-xl -translate-x-4 hidden xs:block">
+          <span className="font-bold font-sans text-xl -translate-x-2 hidden xs:block">
             todos
           </span>
         </Link>
