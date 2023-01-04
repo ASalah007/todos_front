@@ -11,7 +11,7 @@ function BasePage() {
   const [expand, setExpand] = useState(false);
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="min-h-screen overflow-x-hidden flex flex-col">
       <div className="w-screen fixed top-0 left-0 bg-white dark:bg-gray-800 dark:text-white h-20 z-10">
         <Navbar
           sidebar={sidebar}
@@ -34,7 +34,7 @@ function BasePage() {
       <div className="h-20 w-screen"></div>
       <div
         className={
-          "flex flex-col justify-between h-full w-screen overflow-x-hidden " +
+          "grow flex flex-col justify-between h-full w-screen overflow-x-hidden " +
           (inAllowedPages ? (expand ? "sm:pl-24" : "sm:pl-16") : "pl-0")
         }
       >

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { getUserTasks } from "../services/user_services.js";
 import { UserContext } from "../App.js";
 import Task from "./Task.js";
+import DayTasks from "./DayTasks.js";
 
-const periods = ["Archive", "Today", "This Week", "This Month", "This Year"];
 function Taskboard() {
   const [activePeriod, setActivePeriod] = useState(1);
   const user = useContext(UserContext);
@@ -16,8 +16,17 @@ function Taskboard() {
       });
   }, [user]);
 
+  const periods = ["Archive", "Today", "This Week", "This Month", "This Year"];
+  const tasksType = [
+    <div>Archive</div>,
+    <DayTasks tasks={tasks} />,
+    <div>ThisWeek</div>,
+    <div>ThisMonth</div>,
+    <div>Thisyear</div>,
+  ];
+
   return (
-    <div className="flex flex-col h-full gap-5 select-none whitespace-nowrap">
+    <div className="flex flex-col h-full gap-5 select-none whitespace-nowrap -yellow-200">
       {/* periods navigation */}
       <div className="bg-white dark:bg-white/30 dark:backdrop-blur-2xl h-16 flex justify-between rounded-xl shadow-md">
         {/* down period */}
@@ -68,7 +77,7 @@ function Taskboard() {
                 className="flex justify-center items-center rounded-lg border-2 w-8 h-8 sm:hover:bg-gray-100 hover:cursor-pointer"
               >
                 <span className="material-symbols-rounded text-[32px] text-gray-500">
-                  keyboard_arrow_up
+                  keyboard_arrow_up{" "}
                 </span>
               </div>
             </>
@@ -77,30 +86,7 @@ function Taskboard() {
       </div>
       {/* period navigation end */}
 
-      <div className="p-1 xs:p-3 flex flex-col items-center gap-3 mb-20">
-        {!tasks
-          ? "loading"
-          : tasks.map((list) => {
-              return (
-                list.tasks.length > 0 && (
-                  <div key={list.id} className="w-full lg:max-w-[900px]">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="divider grow">{list["title"]}</div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      {list["tasks"].map((task) => {
-                        return (
-                          <div className="">
-                            <Task key={task.id} task={task} />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )
-              );
-            })}
-      </div>
+      {tasks && tasksType[activePeriod]}
     </div>
   );
 }

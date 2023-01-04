@@ -23,7 +23,7 @@ function SignInPage(props) {
   ) : (
     <div className="bg-gray-200 min-w-screen grow flex flex-col justify-center items-center lg:py-11 lg:px-10">
       {/* board */}
-      <div className="bg-white grow w-full max-w-6xl max-h-[1000px] lg:rounded-lg flex flex-col-reverse lg:flex-row overflow-hidden shadow-2xl">
+      <div className="bg-white grow w-full max-w-6xl max-h-[800px] lg:rounded-lg flex flex-col-reverse lg:flex-row overflow-hidden shadow-2xl">
         {/* left part */}
         <div className="lg:w-1/2 flex flex-col ">
           {/* form */}

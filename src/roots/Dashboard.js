@@ -10,7 +10,7 @@ function Dashboard(props) {
   return !user.isLoggedIn ? (
     <Navigate to="/signin/" />
   ) : (
-    <div className="bg-blue-100 dark:bg-dessert bg-fixed bg-no-repeat bg-cover flex h-full">
+    <div className="bg-blue-100 dark:bg-dessert bg-fixed bg-no-repeat bg-cover flex h-full grow">
       <div className="py-4 px-1 md:px-10 xl:px-16 grow">
         <Taskboard />
       </div>
