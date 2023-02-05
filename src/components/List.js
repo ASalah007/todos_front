@@ -1,4 +1,4 @@
-import { useDragControls, Reorder, motion, LayoutGroup } from "framer-motion";
+import { Reorder, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import Task from "./Task";
 
@@ -11,16 +11,16 @@ export default function List({ list }) {
       values={items}
       onReorder={setItems}
     >
-      <div className="flex items-center gap-2 mb-2">
-        <div className="divider grow">{list["title"]}</div>
+      <div className="divider grow text-white before:bg-white after:bg-white">
+        {list["title"]}
       </div>
-      <div className="flex flex-col gap-2">
-        <LayoutGroup>
+      <AnimatePresence>
+        <div className="flex flex-col gap-2">
           {items.map((i) => (
             <Task key={list.tasks[i].id} task={list.tasks[i]} value={i} />
           ))}
-        </LayoutGroup>
-      </div>
+        </div>
+      </AnimatePresence>
     </Reorder.Group>
   );
 }

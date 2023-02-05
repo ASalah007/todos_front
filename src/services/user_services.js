@@ -91,3 +91,12 @@ export async function getUserData() {
 
   return response?.data;
 }
+
+export async function fetchUserGroups() {
+  const response = await axiosAuthenticated.get("group/list/");
+  return response?.data;
+}
+
+export async function finishUserTask() { 
+  
+}

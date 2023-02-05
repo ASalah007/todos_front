@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Aside from "../components/Aside";
+import CreateButton from "../components/CreateButton";
 
 function BasePage() {
   const location = useLocation();
@@ -39,7 +40,7 @@ function BasePage() {
         }
       >
         {/* content */}
-        <div className="grow flex flex-col">
+        <div className="grow flex flex-col bg-sky dark:bg-dessert bg-fixed bg-no-repeat bg-cover ">
           <Outlet />
         </div>
 

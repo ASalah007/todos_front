@@ -10,6 +10,7 @@ import InsightsPage from "./roots/InsightsPage";
 import CalendarPage from "./roots/CalendarPage";
 import StorePage from "./roots/StorePage";
 import ListsPage from "./roots/ListsPage";
+import TaskAddPage from "./roots/TaskAddPage";
 
 export const UserContext = React.createContext({ isLoggedIn: false, name: "" });
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="lists/" element={<ListsPage />} />
           <Route path="calendar/" element={<CalendarPage />} />
           <Route path="store/" element={<StorePage />} />
+          <Route path="taskadd/" element={<TaskAddPage />} />
         </Route>
       </Routes>
     </UserContext.Provider>

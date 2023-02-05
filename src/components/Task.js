@@ -94,6 +94,7 @@ function Task({ task, value }) {
               };
               window.addEventListener("pointerup", pointerUp);
             }}
+            style={{ touchAction: "none" }}
           >
             <span className="material-symbols-rounded text-[28px]">
               drag_indicator
@@ -103,8 +104,10 @@ function Task({ task, value }) {
 
         {/* task details */}
         <motion.div
-          className={"overflow-hidden "}
+          className="overflow-hidden"
           animate={{ height: expand ? 450 : 1 }}
+          initial={false}
+          transition={{ type: "spring", damping: 50, stiffness: 500 }}
         >
           <div className="p-3">
             <div>sadfadsf</div>
