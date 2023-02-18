@@ -19,9 +19,8 @@ function CreateButton() {
       <motion.div
         transition={{
           type: "spring",
-          damping: 50,
-          stiffness: 500,
-          duration: 0.2,
+          damping: 40,
+          stiffness: 350,
         }}
         layout
         className={
