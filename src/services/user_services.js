@@ -97,6 +97,15 @@ export async function fetchUserGroups() {
   return response?.data;
 }
 
-export async function finishUserTask() { 
-  
+export async function fetchUserLists() {
+  const response = await axiosAuthenticated.get("task/lists");
+  return response?.data;
+}
+
+export async function finishUserTask() {}
+
+export async function createTask(task) {
+  console.log(task);
+  const response = await axiosAuthenticated.post("task/create/", task);
+  return response?.data;
 }

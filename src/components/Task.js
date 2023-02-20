@@ -104,41 +104,21 @@ function Task({ task, value }) {
 
         {/* task details */}
         <motion.div
-          className="overflow-hidden"
-          animate={{ height: expand ? 450 : 1 }}
+          className="overflow-hidden flex"
+          animate={{ height: expand ? 450 : 0 }}
           initial={false}
           transition={{ type: "spring", damping: 50, stiffness: 500 }}
         >
-          <div className="p-3">
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
-            <div>sadfadsf</div>
+          <div className="p-3 bg-red-100 grow">
+            <div>
+              <h1 className="font-bold text-lg">Due Date</h1>
+              <div>{task.notes}</div>
+            </div>
+
+            <div>
+              <h1 className="font-bold text-lg">Notes</h1>
+              <div>{task.notes}</div>
+            </div>
           </div>
         </motion.div>
         {/* task details end */}

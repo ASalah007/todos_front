@@ -13,7 +13,7 @@ function BasePage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden flex flex-col">
-      <div className="w-screen fixed top-0 left-0 bg-white dark:bg-gray-800 dark:text-white h-20 z-10">
+      <div className="w-screen fixed top-0 left-0 bg-white dark:bg-gray-800 dark:text-white h-20 z-20">
         <Navbar
           sidebar={sidebar}
           setSidebar={setSidebar}
@@ -24,7 +24,7 @@ function BasePage() {
       {inAllowedPages && (
         <div
           className={
-            "sm:block fixed h-screen pt-20 " +
+            "sm:block fixed h-screen pt-20 z-10" +
             (sidebar ? " block " : " hidden ") +
             (expand ? "w-24" : "w-16")
           }
