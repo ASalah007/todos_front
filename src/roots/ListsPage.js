@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { animated, useSpring } from "react-spring";
+import React, { useEffect, useState } from "react";
+import { fetchUserLists } from "../services/user_services";
+import Group from "../components/Group.js";
+import CreateButton from "../components/CreateButton";
+import ListPreview from "../components/ListPreview";
 
 function ListsPage() {
-  const [animate, setAnimate] = useState(false);
-  const [style, api] = useSpring(
-    () => ({
-      from: { transform: "scale(1.0)", x: 0, y: 0 },
-      to: {
-        transform: animate ? "scale(2.5)" : "scale(1.0)",
-        x: animate ? 1200 : 0,
-        y: animate ? 200 : 0,
-      },
-    }),
-    [animate]
-  );
+  const [lists, setLists] = useState(null);
+  useEffect(() => {
+    fetchUserLists().then((data) => {
+      if (data) setLists(data);
+    });
+  }, []);
+
   return (
-    <div className="bg-yellow-300 grow">
-      <animated.div style={style} onClick={() => setAnimate((old) => !old)}>
-        <div className="bg-white h-40 w-40">ListsPage</div>
-      </animated.div>
+    <div className="grow flex md:items-center justify-center p-10 md:p-32">
+      <div className="grow flex justify-center flex-wrap gap-5">
+        {lists &&
+          lists.map((list) => <ListPreview list={list} key={list.id} />)}
+      </div>
+      <CreateButton />
     </div>
   );
 }

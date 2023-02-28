@@ -11,8 +11,8 @@ function CreateButton() {
   const [active, setActive] = useState(false);
   const list = [
     ["/taskadd/", <AddTaskIcon />, "Task"],
-    ["/", <PlaylistAddIcon />, "List"],
-    ["/", <GroupAddIcon />, "Group"],
+    ["/listadd/", <PlaylistAddIcon />, "List"],
+    ["/groupadd/", <GroupAddIcon />, "Group"],
   ];
   return (
     <ClickAwayListener onClickAway={() => setActive(false)}>

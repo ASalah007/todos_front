@@ -11,6 +11,8 @@ import CalendarPage from "./roots/CalendarPage";
 import StorePage from "./roots/StorePage";
 import ListsPage from "./roots/ListsPage";
 import TaskAddPage from "./roots/TaskAddPage";
+import ListAddPage from "./roots/ListAddPage";
+import GroupAddPage from "./roots/GroupAddPage";
 
 export const UserContext = React.createContext({ isLoggedIn: false, name: "" });
 
@@ -34,6 +36,8 @@ function App() {
           <Route path="calendar/" element={<CalendarPage />} />
           <Route path="store/" element={<StorePage />} />
           <Route path="taskadd/" element={<TaskAddPage />} />
+          <Route path="listadd/" element={<ListAddPage />} />
+          <Route path="groupadd/" element={<GroupAddPage />} />
         </Route>
       </Routes>
     </UserContext.Provider>

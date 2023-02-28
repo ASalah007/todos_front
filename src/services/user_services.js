@@ -102,10 +102,26 @@ export async function fetchUserLists() {
   return response?.data;
 }
 
-export async function finishUserTask() {}
+export async function finishUserTask(task_id, finished_date) {
+  const response = await axiosAuthenticated.patch(
+    `task/${task_id}/`,
+    finished_date
+  );
+  return response?.data;
+}
 
 export async function createTask(task) {
-  console.log(task);
   const response = await axiosAuthenticated.post("task/create/", task);
+  return response?.data;
+}
+
+export async function createList(list) {
+  const response = await axiosAuthenticated.post("task/list/create/", list);
+  return response?.data;
+}
+
+export async function createGroup(group) {
+  console.log(group);
+  const response = await axiosAuthenticated.post("group/create/", group);
   return response?.data;
 }
